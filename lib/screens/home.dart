@@ -21,6 +21,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final Stream<QuerySnapshot> datas =
         FirebaseFirestore.instance.collection(widget.id).snapshots();
+
+    CollectionReference dataRef =
+        FirebaseFirestore.instance.collection(widget.id.toString());
+
+    Future<void> deleteUser(String id) {
+      return dataRef.doc(id).delete();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -79,6 +87,26 @@ class _HomeState extends State<Home> {
                           ),
                           Text(
                             store[i]['text'],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.delete,
+                                  size: 20,
+                                ),
+                                onPressed: () {
+                                  deleteUser(store[i]['id']).then((value) {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(const SnackBar(
+                                      content: Text("Deleted"),
+                                      duration: Duration(milliseconds: 1000),
+                                    ));
+                                  });
+                                },
+                              ),
+                            ],
                           ),
                         ],
                       ),
