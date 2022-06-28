@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire/screens/login.dart';
+import 'package:flutterfire/utils/update.dart';
 
 class Home extends StatefulWidget {
   const Home(
@@ -104,6 +105,20 @@ class _HomeState extends State<Home> {
                                       duration: Duration(milliseconds: 1000),
                                     ));
                                   });
+                                },
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.edit, size: 25),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Update(
+                                        id: store[i]['id'],
+                                        collection: widget.id.toString(),
+                                      ),
+                                    ),
+                                  );
                                 },
                               ),
                             ],
