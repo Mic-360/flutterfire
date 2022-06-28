@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterfire/screens/home.dart';
+import 'package:flutterfire/utils/resetPassword.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Login extends StatefulWidget {
@@ -129,6 +130,20 @@ class _LoginState extends State<Login> {
                     loggedin();
                   }
                 }),
+            SizedBox(
+              height: 10.0,
+            ),
+            ElevatedButton(
+              child: const Text('Reset Password'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResetPassword(),
+                    ),
+                  );
+                }
+            ),
             SizedBox(
               height: 20.0,
             ),
