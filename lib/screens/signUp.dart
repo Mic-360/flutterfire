@@ -20,6 +20,7 @@ class _SignUpState extends State<SignUp> {
   final loginKey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
   late GoogleSignInAccount userObject;
+  bool hiddenPassword = true;
 
   @override
   void dispose() {
@@ -79,6 +80,7 @@ class _SignUpState extends State<SignUp> {
                 onChanged: (value) {
                   password = value;
                 },
+                obscureText: hiddenPassword,
                 decoration:  InputDecoration(
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal),
@@ -94,10 +96,18 @@ class _SignUpState extends State<SignUp> {
                   onChanged: (value) {
                     confirmed = value;
                   },
+                  obscureText: hiddenPassword,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal)),
                     hintText: 'Confirm Password',
+                    suffixIcon: IconButton(
+                        icon: Icon(Icons.visibility),
+                        onPressed: () {
+                          setState(() {
+                            hiddenPassword = !hiddenPassword;
+                          });
+                        }),
                   ),
                   controller: _confirmPasswordController,
                   keyboardType: TextInputType.visiblePassword,

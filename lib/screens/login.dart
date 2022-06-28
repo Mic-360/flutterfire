@@ -18,6 +18,7 @@ class _LoginState extends State<Login> {
   final loginKey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
   late GoogleSignInAccount userObject;
+  bool hiddenPassword = true;
 
   @override
   void dispose() {
@@ -98,9 +99,17 @@ class _LoginState extends State<Login> {
             Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
               child: TextFormField(
-                decoration: const InputDecoration(
+                obscureText: hiddenPassword,
+                decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Enter your Password',
+                  suffixIcon: IconButton(
+                      icon: Icon(Icons.visibility),
+                      onPressed: () {
+                        setState(() {
+                          hiddenPassword = !hiddenPassword;
+                        });
+                      }),
                 ),
                 controller: _passwordController,
                 keyboardType: TextInputType.visiblePassword,
