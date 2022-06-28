@@ -80,6 +80,15 @@ class _LoginState extends State<Login> {
                   ),
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please Enter the Mail Address';
+                    }
+                    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                        .hasMatch(value)) {
+                      return 'Please Enter a Valid Mail';
+                    }
+                  },
                 ),
               ),
               // SizedBox(height: 20.0,),
@@ -92,6 +101,8 @@ class _LoginState extends State<Login> {
                   ),
                   controller: _passwordController,
                   keyboardType: TextInputType.visiblePassword,
+                  validator: (value) =>
+                    value!.length < 6 ? 'Password is too short' : null,
                 ),
               ),
               SizedBox(
@@ -99,7 +110,13 @@ class _LoginState extends State<Login> {
               ),
               ElevatedButton(
                 child: const Text('Login'),
-                onPressed: () => loggedin(),
+                onPressed: () {
+                  if (loginKey.currentState!.validate()) {
+                      email = _emailController.text;
+                      password = _passwordController.text;
+                      loggedin();
+                    }
+                }
               ),
               Flexible(child: Container(), flex: 1),
             ],
