@@ -60,6 +60,7 @@ class _MyAppState extends State<MyApp> {
                     email: FirebaseAuth.instance.currentUser!.email.toString(),
                     name: FirebaseAuth.instance.currentUser!.displayName
                         .toString(),
+                    id: FirebaseAuth.instance.currentUser!.uid,
                   ),
           );
         }

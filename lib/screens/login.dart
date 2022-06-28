@@ -155,6 +155,7 @@ class _LoginState extends State<Login> {
                     builder: (context) => Home(
                       email: userObject.email,
                       name: userObject.displayName.toString(),
+                      id: userObject.id,
                     ),
                   ),
                 );
