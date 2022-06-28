@@ -35,7 +35,8 @@ class _HomeState extends State<Home> {
                     builder: (context) => const Login(),
                   ),
                 );
-              }, icon: const Icon(Icons.logout),
+              },
+              icon: const Icon(Icons.logout),
             ),
           ],
         ),
@@ -67,20 +68,21 @@ class _HomeState extends State<Home> {
 
                   return Column(
                     children: List.generate(
-                        store.length,
-                        (i) => Column(
-                              children: [
-                                Text(
-                                  store[i]['text'],
-                                ),
-                                SizedBox(
-                                  height: 20.0,
-                                ),
-                                Text(
-                                  store[i]['text'],
-                                ),
-                              ],
-                            )),
+                      store.length,
+                      (i) => Column(
+                        children: [
+                          Text(
+                            store[i]['text'],
+                          ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          Text(
+                            store[i]['text'],
+                          ),
+                        ],
+                      ),
+                    ),
                   );
                 }),
           ],

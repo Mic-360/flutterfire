@@ -16,7 +16,8 @@ class _SignUpState extends State<SignUp> {
   late String confirmed;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   final loginKey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
   late GoogleSignInAccount userObject;
