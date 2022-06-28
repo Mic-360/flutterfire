@@ -14,9 +14,9 @@ class _SignUpState extends State<SignUp> {
   late String email;
   late String password;
   late String confirmed;
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
   final loginKey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
   late GoogleSignInAccount userObject;
@@ -36,15 +36,19 @@ class _SignUpState extends State<SignUp> {
       try {
         await auth.createUserWithEmailAndPassword(
             email: email, password: password);
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("Signed In"),
-          duration: Duration(milliseconds: 1000),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Signed In"),
+            duration: Duration(milliseconds: 1000),
+          ),
+        );
       } on FirebaseAuthException catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("Failed with code: ${e.code}"),
-          duration: const Duration(milliseconds: 1000),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text("Failed with code: ${e.code}"),
+            duration: const Duration(milliseconds: 1000),
+          ),
+        );
       }
     }
 
@@ -61,7 +65,8 @@ class _SignUpState extends State<SignUp> {
               TextFormField(
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.teal)),
+                    borderSide: BorderSide(color: Colors.teal),
+                  ),
                   hintText: 'email',
                 ),
                 controller: _emailController,
@@ -81,7 +86,7 @@ class _SignUpState extends State<SignUp> {
                   password = value;
                 },
                 obscureText: hiddenPassword,
-                decoration:  InputDecoration(
+                decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal),
                   ),
@@ -99,7 +104,8 @@ class _SignUpState extends State<SignUp> {
                   obscureText: hiddenPassword,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.teal)),
+                      borderSide: BorderSide(color: Colors.teal),
+                    ),
                     hintText: 'Confirm Password',
                     suffixIcon: IconButton(
                         icon: Icon(Icons.visibility),
@@ -129,7 +135,9 @@ class _SignUpState extends State<SignUp> {
                   }
                 },
               ),
-              SizedBox(height: 40.0,),
+              SizedBox(
+                height: 40.0,
+              ),
               TextButton(
                 child: Text('Google Sign in'),
                 onPressed: () async {

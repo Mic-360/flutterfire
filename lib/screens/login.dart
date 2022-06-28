@@ -12,8 +12,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   late String email;
-  final TextEditingController _emailController = TextEditingController();
   late String password;
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final loginKey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
@@ -62,11 +62,12 @@ class _LoginState extends State<Login> {
           ),
         );
       }
-      {}
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text('Login Page')),
+      appBar: AppBar(
+        title: Text('Login Page'),
+      ),
       backgroundColor: Colors.blueGrey,
       body: Form(
         key: loginKey,
@@ -95,7 +96,6 @@ class _LoginState extends State<Login> {
                 },
               ),
             ),
-            // SizedBox(height: 20.0,),
             Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 30.0),
               child: TextFormField(

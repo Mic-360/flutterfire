@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key, required this.id, required this.email, required this.name});
+  const Home(
+      {super.key, required this.id, required this.email, required this.name});
 
   final String id;
   final String name;
