@@ -19,7 +19,9 @@ class NotesRepository {
 
   Future<void> addNote(String text) {
     final note = Note(id: '', text: text, createdAt: DateTime.now());
-    return _notesRef.add(note.toMap());
+    final data = note.toMap();
+    data['createdAt'] = FieldValue.serverTimestamp();
+    return _notesRef.add(data);
   }
 }
 
