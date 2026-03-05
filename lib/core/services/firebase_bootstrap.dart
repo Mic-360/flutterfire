@@ -26,6 +26,11 @@ Future<void> bootstrapFirebaseServices() async {
   }
 
   if (EnvConfig.useEmulators) {
-    await FirebaseAuth.instance.useAuthEmulator('localhost', 9099);
+    final authEmulatorHost =
+        !kIsWeb && defaultTargetPlatform == TargetPlatform.android
+            ? '10.0.2.2'
+            : 'localhost';
+
+    await FirebaseAuth.instance.useAuthEmulator(authEmulatorHost, 9099);
   }
 }
